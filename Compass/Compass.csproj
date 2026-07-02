@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Compass</AssemblyName>
+    <RootNamespace>Compass</RootNamespace>
+    <Version>1.0.0</Version>
+    <ApplicationIcon></ApplicationIcon>
+    <!-- No external NuGet packages: uses only the built-in framework. -->
+  </PropertyGroup>
+
+  <!-- WPF is the primary UI. WinForms is used only for the tray icon, via the WF alias,
+       so drop its global usings to avoid clashing with System.Windows.* types. -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.17.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.85.2" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Compass.Core\Compass.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Compass.Mobile.Pages.TodayPage"
+             Title="Today"
+             BackgroundColor="{StaticResource Bg}">
+    <RefreshView x:Name="Refresh" Refreshing="Refresh_Refreshing" RefreshColor="{StaticResource Accent}">
+    <ScrollView>
+        <VerticalStackLayout Padding="18,16" Spacing="12">
+
+            <Label x:Name="Greeting" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextC}" />
+            <Label x:Name="TodayDate" FontSize="15" TextColor="{StaticResource Muted}" />
+
+            <Border BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Line}" StrokeThickness="1" Padding="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="12" Spacing="8">
+                    <Label Text="Quick capture — dump it here the second you hear it" FontSize="12" TextColor="{StaticResource Muted}" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Entry x:Name="CaptureBox" Placeholder="e.g. quiz next Tuesday"
+                               TextColor="{StaticResource TextC}" PlaceholderColor="{StaticResource Muted}"
+                               BackgroundColor="{StaticResource Surface2}" />
+                        <Button Grid.Column="1" Text="Add" Clicked="Capture_Clicked"
+                                BackgroundColor="{StaticResource Accent}" TextColor="White" CornerRadius="8" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="⚠  Needs your attention" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextC}" Margin="0,6,0,0" />
+            <VerticalStackLayout x:Name="AttentionPanel" Spacing="8" />
+
+            <Label Text="📅  Coming up (2 weeks)" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextC}" Margin="0,6,0,0" />
+            <VerticalStackLayout x:Name="UpcomingPanel" Spacing="8" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+    </RefreshView>
+</ContentPage>

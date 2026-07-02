@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Compass.Mobile.Pages.AddDeadlinePage"
+             Title="Add deadline"
+             BackgroundColor="{StaticResource Bg}">
+    <ScrollView>
+        <VerticalStackLayout Padding="18" Spacing="10">
+
+            <Label Text="What is it?" FontSize="12" TextColor="{StaticResource Muted}" />
+            <Entry x:Name="TitleBox" Placeholder="e.g. Calculus final exam"
+                   TextColor="{StaticResource TextC}" PlaceholderColor="{StaticResource Muted}"
+                   BackgroundColor="{StaticResource Surface2}" />
+
+            <Label Text="Type" FontSize="12" TextColor="{StaticResource Muted}" Margin="0,6,0,0" />
+            <Picker x:Name="KindBox" TextColor="{StaticResource TextC}" BackgroundColor="{StaticResource Surface2}" />
+
+            <Label Text="Date" FontSize="12" TextColor="{StaticResource Muted}" Margin="0,6,0,0" />
+            <DatePicker x:Name="DateBox" Format="dddd, dd MMM yyyy" DateSelected="Date_Changed"
+                        TextColor="{StaticResource TextC}" BackgroundColor="{StaticResource Surface2}" />
+
+            <Label Text="Time" FontSize="12" TextColor="{StaticResource Muted}" Margin="0,6,0,0" />
+            <TimePicker x:Name="TimeBox" Format="h:mm tt" PropertyChanged="Time_PropertyChanged"
+                        TextColor="{StaticResource TextC}" BackgroundColor="{StaticResource Surface2}" />
+
+            <Label Text="Start reminding me to prepare" FontSize="12" TextColor="{StaticResource Muted}" Margin="0,6,0,0" />
+            <Picker x:Name="PrepBox" TextColor="{StaticResource TextC}" BackgroundColor="{StaticResource Surface2}" />
+
+            <HorizontalStackLayout Spacing="8" Margin="0,6,0,0">
+                <CheckBox x:Name="CriticalBox" Color="{StaticResource Accent}" />
+                <Label Text="Critical — keep nagging me (use for exams)" TextColor="{StaticResource TextC}" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Label Text="Where can you double-check this? (office, website, who to ask)" FontSize="12" TextColor="{StaticResource Muted}" Margin="0,6,0,0" />
+            <Entry x:Name="WhereBox" TextColor="{StaticResource TextC}" BackgroundColor="{StaticResource Surface2}" />
+
+            <Label Text="Notes (optional)" FontSize="12" TextColor="{StaticResource Muted}" Margin="0,6,0,0" />
+            <Editor x:Name="NotesBox" HeightRequest="70" TextColor="{StaticResource TextC}" BackgroundColor="{StaticResource Surface2}" />
+
+            <Border BackgroundColor="{StaticResource Surface2}" Stroke="{StaticResource Accent}" StrokeThickness="1" Padding="14" Margin="0,10,0,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="CHECK THIS CAREFULLY" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                    <Label x:Name="Preview" FontSize="17" FontAttributes="Bold" TextColor="{StaticResource TextC}" />
+                    <Label x:Name="PreviewCountdown" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <HorizontalStackLayout Spacing="8" Margin="0,8,0,0">
+                <CheckBox x:Name="ConfirmBox" Color="{StaticResource Accent}" CheckedChanged="Confirm_Changed" />
+                <Label Text="Yes — I've checked the day and time are correct." TextColor="{StaticResource TextC}" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Button x:Name="SaveBtn" Text="Save deadline" IsEnabled="False" Clicked="Save_Clicked"
+                    BackgroundColor="{StaticResource Accent}" TextColor="White" CornerRadius="10" Margin="0,6,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

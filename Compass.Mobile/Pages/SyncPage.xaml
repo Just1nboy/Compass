@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Compass.Mobile.Pages.SyncPage"
+             Title="Sync"
+             BackgroundColor="{StaticResource Bg}">
+    <ScrollView>
+        <VerticalStackLayout Padding="18,16" Spacing="12">
+            <Label Text="Sync" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextC}" />
+            <Label x:Name="Status" FontSize="13" TextColor="{StaticResource Muted}" />
+
+            <VerticalStackLayout x:Name="SignedOut" Spacing="10">
+                <Label Text="Sign in with the SAME email you use on your PC, and your deadlines sync across both."
+                       FontSize="12.5" TextColor="{StaticResource Muted}" />
+                <Entry x:Name="EmailBox" Placeholder="email" Keyboard="Email"
+                       TextColor="{StaticResource TextC}" PlaceholderColor="{StaticResource Muted}" BackgroundColor="{StaticResource Surface2}" />
+                <Entry x:Name="PwBox" Placeholder="password" IsPassword="True"
+                       TextColor="{StaticResource TextC}" PlaceholderColor="{StaticResource Muted}" BackgroundColor="{StaticResource Surface2}" />
+                <Button x:Name="SignInBtn" Text="Sign in" Clicked="SignIn_Clicked"
+                        BackgroundColor="{StaticResource Accent}" TextColor="White" CornerRadius="10" />
+                <Button Text="Create account" Clicked="Create_Clicked"
+                        BackgroundColor="{StaticResource Surface2}" TextColor="{StaticResource TextC}" CornerRadius="10" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout x:Name="SignedIn" Spacing="10" IsVisible="False">
+                <Button Text="Sync now" Clicked="SyncNow_Clicked"
+                        BackgroundColor="{StaticResource Accent}" TextColor="White" CornerRadius="10" />
+                <Button Text="Sign out" Clicked="SignOut_Clicked"
+                        BackgroundColor="{StaticResource Surface2}" TextColor="{StaticResource TextC}" CornerRadius="10" />
+                <Label x:Name="LastSync" FontSize="12" TextColor="{StaticResource Muted}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

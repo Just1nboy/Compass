@@ -1,0 +1,26 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Compass.Mobile"
+             x:Class="Compass.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Compass palette (matches the desktop app) -->
+            <Color x:Key="Bg">#11151C</Color>
+            <Color x:Key="Surface">#1A2029</Color>
+            <Color x:Key="Surface2">#232B36</Color>
+            <Color x:Key="Line">#2E3846</Color>
+            <Color x:Key="TextC">#F2F5F9</Color>
+            <Color x:Key="Muted">#9AA7B8</Color>
+            <Color x:Key="Accent">#4F8CFF</Color>
+            <Color x:Key="Red">#FF5A5A</Color>
+            <Color x:Key="Amber">#FFB020</Color>
+            <Color x:Key="Green">#35C759</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

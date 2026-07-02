@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Compass.Mobile.Pages.PlaybooksPage"
+             Title="Playbooks"
+             BackgroundColor="{StaticResource Bg}">
+    <RefreshView x:Name="Refresh" Refreshing="Refresh_Refreshing" RefreshColor="{StaticResource Accent}">
+    <ScrollView>
+        <VerticalStackLayout Padding="18,16" Spacing="12">
+            <Label Text="Playbooks" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextC}" />
+            <Label Text="The app knows the steps so you don't have to — including the exact question to ask and where to find the answer."
+                   FontSize="13" TextColor="{StaticResource Muted}" />
+            <VerticalStackLayout x:Name="Root" Spacing="12" />
+        </VerticalStackLayout>
+    </ScrollView>
+    </RefreshView>
+</ContentPage>

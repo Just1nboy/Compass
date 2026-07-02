@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Platform-agnostic shared code (models, logic) used by BOTH the Windows
+       desktop app and the Android app. Plain net9.0 so either can reference it. -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Compass</RootNamespace>
+    <AssemblyName>Compass.Core</AssemblyName>
+  </PropertyGroup>
+  <!-- Sync talks to Supabase over plain REST (System.Net.Http.Json, in-box), so no SDK dependency. -->
+
+</Project>

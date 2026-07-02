@@ -1,0 +1,19 @@
+<Window x:Class="Compass.Views.ImportReviewDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Deadlines found in your email" Height="620" Width="620"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource Bg}" FontFamily="Segoe UI">
+    <DockPanel Margin="22">
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="Deadlines found in your email" Foreground="{StaticResource Text}" FontSize="20" FontWeight="Bold"/>
+            <TextBlock x:Name="Subtitle" Foreground="{StaticResource Muted}" FontSize="13" TextWrapping="Wrap" Margin="0,4,0,14"
+                       Text="These were detected automatically. Nothing is added until you review and confirm each one — check the date and time carefully."/>
+        </StackPanel>
+        <Button DockPanel.Dock="Bottom" Content="Done" Style="{StaticResource Primary}" HorizontalAlignment="Right"
+                Margin="0,14,0,0" Click="Done_Click"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="List"/>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
