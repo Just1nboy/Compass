@@ -10,7 +10,7 @@
     <AssemblyName>Compass</AssemblyName>
     <RootNamespace>Compass</RootNamespace>
     <Version>1.0.0</Version>
-    <ApplicationIcon></ApplicationIcon>
+    <ApplicationIcon>Assets\compass.ico</ApplicationIcon>
     <!-- No external NuGet packages: uses only the built-in framework. -->
   </PropertyGroup>
 
