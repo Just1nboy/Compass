@@ -1,4 +1,5 @@
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,6 +9,33 @@ using Compass.Sync;
 using WF = System.Windows.Forms;
 
 namespace Compass;
+
+/// <summary>Runs before ANY other code in the assembly (including WPF's static
+/// initializers). This exists because auto-start at logon was crashing silently:
+/// when Windows launches us from the Run key / Startup shortcut / a scheduled task,
+/// the process environment can be missing <c>windir</c> / <c>SystemRoot</c>. WPF's
+/// font cache (MS.Internal.FontCache.Util) builds a URI from those vars the first time
+/// a Window is created, and throws UriFormatException if they're absent — killing the
+/// app before the tray icon ever shows. Double-clicking worked because the shell passes
+/// a full environment. We repair the environment here so launch context can never break us.</summary>
+internal static class Bootstrap
+{
+    [ModuleInitializer]
+    internal static void Init()
+    {
+        try
+        {
+            string win = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            if (string.IsNullOrEmpty(win)) win = @"C:\Windows";
+
+            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("windir")))
+                Environment.SetEnvironmentVariable("windir", win);
+            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SystemRoot")))
+                Environment.SetEnvironmentVariable("SystemRoot", win);
+        }
+        catch { /* must never throw during module init */ }
+    }
+}
 
 public partial class App : Application
 {
@@ -48,9 +76,11 @@ public partial class App : Application
         _mutex = new Mutex(true, "Compass_SingleInstance_9F2C", out bool isNew);
         if (!isNew)
         {
+            LogStartup($"duplicate launch, already running; exiting (pid {Environment.ProcessId})");
             Shutdown();
             return;
         }
+        LogStartup($"started (pid {Environment.ProcessId}) from {Environment.ProcessPath}");
 
         DataStore.Instance.Load();
         StartupManager.EnsureAutoStart();
@@ -83,6 +113,19 @@ public partial class App : Application
 
         // Proactively scan email a few seconds after launch (throttled, runs in background).
         Dispatcher.InvokeAsync(async () => { await Task.Delay(6000); await AutoScanEmailAsync(); });
+    }
+
+    /// <summary>Breadcrumbs for the auto-start saga: the Startup-folder .vbs logs its launch
+    /// attempts to the same file, so after any boot startup-log.txt tells the whole story
+    /// (which mechanism fired, when, and what failed) instead of leaving us guessing.</summary>
+    private static void LogStartup(string msg)
+    {
+        try
+        {
+            string path = Path.Combine(DataStore.DataFolder, "startup-log.txt");
+            File.AppendAllText(path, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}  [app] {msg}\n");
+        }
+        catch { /* logging must never throw */ }
     }
 
     private static void LogError(string kind, Exception? ex)
